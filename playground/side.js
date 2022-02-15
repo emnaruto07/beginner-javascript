@@ -12,3 +12,16 @@ const myTotal = calculateBill()
 
 //printing the value
 console.log(myTotal)
+
+
+//closures
+
+function createGreeting(greeting = '') {
+    const myGreet = greeting.toUpperCase();
+    return function (name){
+
+        return `${myGreet} ${name}`;
+    }
+}
+
+const sayHello = createGreeting('Hello')
