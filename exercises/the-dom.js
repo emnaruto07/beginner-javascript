@@ -13,3 +13,12 @@ function toggleWhenClick(){
 }
 
 test.addEventListener('click', toggleWhenClick)
+
+test.alt="random"
+test.width = 200;
+
+// window.addEventListener('load', function(){
+//     console.log(test.naturalWidth)
+// })
+
+console.log(test.getAttribute('alt'))
