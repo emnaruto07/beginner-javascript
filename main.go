@@ -3,6 +3,8 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"log"
+	"time"
 
 	_ "github.com/lib/pq"
 )
@@ -29,4 +31,29 @@ func main() {
 	}
 
 	fmt.Println("Successfully connected!")
+
+	var (
+		actor_id    int
+		first_name  string
+		last_name   string
+		last_update time.Time
+	)
+	rows, err := db.Query("select actor_id, first_name,last_name,last_update from actor where actor_id = $1", 3)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+	for rows.Next() {
+		err := rows.Scan(&actor_id, &first_name, &last_name, &last_update)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(actor_id, first_name, last_name, last_update)
+	}
+	err = rows.Err()
+	if err != nil {
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
 }
