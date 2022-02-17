@@ -8,6 +8,7 @@ import (
 
 func main() {
 	db_client.DBConnection()
+	defer db_client.DBClient.Close()
 
 	r := gin.Default()
 	r.GET("/actors", controllers.FetchRecord)
