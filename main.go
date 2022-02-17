@@ -10,8 +10,8 @@ func main() {
 	db_client.DBConnection()
 
 	r := gin.Default()
-	r.GET("/actors", controllers.FetchPost)
-	r.GET("/actor/:id", controllers.GetPost)
+	r.GET("/actors", controllers.FetchRecord)
+	r.GET("/actor/:id", controllers.GetRecord)
 
 	if err := r.Run(":5000"); err != nil {
 		panic(err)

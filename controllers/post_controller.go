@@ -16,7 +16,7 @@ type Get struct {
 	Last_update time.Time `json:"last_update"`
 }
 
-func FetchPost(c *gin.Context) {
+func FetchRecord(c *gin.Context) {
 	var posts []Get
 
 	rows, err := db_client.DBClient.Query("SELECT actor_id, first_name,last_name,last_update FROM actor")
@@ -42,7 +42,7 @@ func FetchPost(c *gin.Context) {
 	c.JSON(http.StatusOK, posts)
 }
 
-func GetPost(c *gin.Context) {
+func GetRecord(c *gin.Context) {
 	idStr := c.Param("id")
 	id, _ := strconv.Atoi(idStr)
 
