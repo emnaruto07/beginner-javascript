@@ -18,10 +18,11 @@ type Get struct {
 func FetchPost(c *gin.Context) {
 	var posts []Get
 
-	rows, err := db_client.DBClient.Query("select actor_id, first_name,last_name,last_update from actor;")
+	rows, err := db_client.DBClient.Query("SELECT actor_id, first_name,last_name,last_update FROM actor;")
 	if err != nil {
 		c.JSON(http.StatusUnprocessableEntity, gin.H{
 			"error": true,
+			// "message": "pong",
 		})
 		return
 	}
