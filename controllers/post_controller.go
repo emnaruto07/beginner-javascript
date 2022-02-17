@@ -21,7 +21,7 @@ func FetchPost(c *gin.Context) {
 
 	rows, err := db_client.DBClient.Query("SELECT actor_id, first_name,last_name,last_update FROM actor")
 	if err != nil {
-		c.JSON(http.StatusUnprocessableEntity, gin.H{
+		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": true,
 			// "message": "pong",
 		})
@@ -31,7 +31,7 @@ func FetchPost(c *gin.Context) {
 	for rows.Next() {
 		var singleRecord Get
 		if err := rows.Scan(&singleRecord.Actor_id, &singleRecord.First_name, &singleRecord.Last_name, &singleRecord.Last_update); err != nil {
-			c.JSON(http.StatusUnprocessableEntity, gin.H{
+			c.JSON(http.StatusInternalServerError, gin.H{
 				"error":   true,
 				"message": err.Error(),
 			})
@@ -49,7 +49,7 @@ func GetPost(c *gin.Context) {
 	row := db_client.DBClient.QueryRow("select actor_id, first_name,last_name,last_update from actor where actor_id = $1;", id)
 	var post Get
 	if err := row.Scan(&post.Actor_id, &post.First_name, &post.Last_name, &post.Last_update); err != nil {
-		c.JSON(http.StatusUnprocessableEntity, gin.H{
+		c.JSON(http.StatusInternalServerError, gin.H{
 			"error":   true,
 			"message": err.Error(),
 		})
