@@ -11,6 +11,7 @@ func main() {
 
 	r := gin.Default()
 	r.GET("/actors", controllers.FetchPost)
+	r.GET("/actor/:id", controllers.GetPost)
 
 	if err := r.Run(":5000"); err != nil {
 		panic(err)
